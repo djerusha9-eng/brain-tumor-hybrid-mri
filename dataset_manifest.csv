@@ -1,0 +1,5 @@
+sample_id,patient_id,path,label,split,mask_path,source,modality
+example_hgg_001,patient_hgg_001,/absolute/path/to/image_or_volume.nii.gz,HGG,train,/absolute/path/to/mask.nii.gz,BraTS,T1CE
+example_lgg_001,patient_lgg_001,/absolute/path/to/image_or_volume.nii.gz,LGG,validation,/absolute/path/to/mask.nii.gz,BraTS,T1CE
+example_normal_001,patient_normal_001,/absolute/path/to/image_or_volume.nii.gz,NORMAL,test,,IXI,T1
+

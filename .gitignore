@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+artifacts/
+data/
+*.nii
+*.nii.gz
+*.h5
+*.keras
+*.ckpt
+*.npz
+*.npy
+*.log
+

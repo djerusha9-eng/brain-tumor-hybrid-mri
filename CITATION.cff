@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If this software supports your research, cite the associated manuscript and this software release."
+title: "Hybrid Brain-Tumor MRI Reproducibility Framework"
+type: software
+version: 0.1.0
+date-released: 2026-08-04
+authors:
+  - family-names: Jerusha
+    given-names: D.
+  - family-names: Renuga
+    given-names: S.
+  - family-names: Singh
+    given-names: C. Edwin
+  - family-names: Ponnaian
+    given-names: Geetha
+

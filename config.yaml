@@ -1,0 +1,72 @@
+project:
+  name: hybrid-brain-tumor-mri
+  seed: 42
+  deterministic_ops: true
+
+data:
+  manifest: dataset_manifest.csv
+  prepared_manifest: artifacts/prepared_manifest.csv
+  required_labels: [HGG, LGG, NORMAL]
+  allowed_modalities: [T1, T1CE, T2, FLAIR]
+  split:
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+  representative_slice: largest_foreground
+  reject_duplicate_hashes: true
+
+preprocessing:
+  output_size: [299, 299]
+  percentile_clip: [0.5, 99.5]
+  median_kernel: 3
+  wiener_kernel: 5
+  clahe_clip_limit: 2.0
+  crop_foreground: true
+  foreground_threshold: 0.02
+  use_fcm_roi: true
+
+segmentation:
+  clusters: 4
+  fuzziness: 2.0
+  max_iterations: 150
+  tolerance: 0.00001
+  tumor_cluster: brightest
+  min_component_pixels: 32
+
+model:
+  backbones: [inception_v3, resnet152_v2, inception_resnet_v2]
+  image_size: [299, 299]
+  imagenet_weights: true
+  trainable_backbone_layers: 0
+  dense_units: [1024, 512]
+  dropout: 0.5
+  l2: 0.0001
+  label_smoothing: 0.05
+
+training:
+  epochs: 50
+  batch_size: 8
+  learning_rate: 0.0001
+  patience: 8
+  monitor: val_macro_f1
+  class_weight: balanced
+
+evaluation:
+  bootstrap_iterations: 2000
+  confidence_level: 0.95
+  calibration_bins: 10
+  positive_label: HGG
+
+explainability:
+  background_samples: 32
+  explanation_samples: 64
+  top_features: 30
+
+artifacts:
+  root: artifacts
+  model: artifacts/best_model.keras
+  history: artifacts/training_history.csv
+  metrics: artifacts/test_metrics.json
+  predictions: artifacts/test_predictions.csv
+  explanations: artifacts/shap_values.npz
+
